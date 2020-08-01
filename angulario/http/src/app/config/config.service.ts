@@ -1,9 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+/** https://angular.io/guide/http#setup-for-server-communication
+ *    app/app.module.ts (excerpt)
+ *    app/config/config.service.ts (excerpt)
+ *    app/config/config.service.ts (RxJS imports)
+ */
+
+import { Injectable } from '@angular/core'; // http#setup-for-server-communication
+import { HttpClient } from '@angular/common/http'; // http#setup-for-server-communication
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs'; // http#setup-for-server-communication
+import { catchError, retry } from 'rxjs/operators'; // http#setup-for-server-communication
 
 export interface Config {
   heroesUrl: string;
@@ -14,7 +20,7 @@ export interface Config {
 export class ConfigService {
   configUrl = 'assets/config.json';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { } // http#setup-for-server-communication
 
   getConfig() {
     return this.http.get<Config>(this.configUrl)
