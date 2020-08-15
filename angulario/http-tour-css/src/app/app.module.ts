@@ -11,11 +11,13 @@ import { HttpClientModule } from '@angular/common/http'; // /http#setup-for-serv
 
 import { AppComponent } from './app.component';
 import { ConfigComponent } from './config/config.component';
+import { DownloaderComponent } from './downloader/downloader.component';
 
 @NgModule({ //
   declarations: [
     AppComponent,
-    ConfigComponent //
+    ConfigComponent,
+    DownloaderComponent //
   ],
   imports: [
     BrowserModule, //

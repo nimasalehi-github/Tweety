@@ -1,3 +1,18 @@
+/** https://angular.io/guide/http#requesting-data-from-a-server
+ *    Requesting a typed response
+ *        assets/config.json
+ *        app/config/config.service.ts (getConfig v.1)
+ *        app/config/config.component.ts (showConfig v.1)
+ *    Reading the full response
+ *        app/config/config.service.ts (getConfig v.2)
+ *        app/config/config.component.ts (showConfig v.2)
+ *        app/config/config.component.ts (showConfigResponse)
+ *    Making a JSONP request
+ *    Requesting non-JSON data
+ *        app/downloader/downloader.service.ts (getTextFile)
+ *        app/downloader/downloader.component.ts (download)
+ */
+
 import { Component } from '@angular/core';
 import { Config, ConfigService } from './config.service';
 import { MessageService } from '../message.service';
@@ -11,7 +26,7 @@ import { MessageService } from '../message.service';
 export class ConfigComponent {
   error: any;
   headers: string[];
-  config: Config;
+  config: Config; // http#requesting-data-from-a-server
 
   constructor(private configService: ConfigService) {}
 
@@ -40,11 +55,12 @@ export class ConfigComponent {
   showConfig_v2() {
     this.configService.getConfig()
       // clone the data object, using its known Config shape
-      .subscribe((data: Config) => this.config = { ...data });
+      .subscribe((data: Config) => this.config = { ...data });  // /http#requesting-data-from-a-server
+                                                                // /http#requesting-a-typed-response
   }
 
-  showConfigResponse() {
-    this.configService.getConfigResponse()
+  showConfigResponse() {                        // /http#reading-the-full-response
+    this.configService.getConfigResponse()      // /http#requesting-data-from-a-server
       // resp is of type `HttpResponse<Config>`
       .subscribe(resp => {
         // display its headers
