@@ -1,6 +1,21 @@
+/** https://angular.io/guide/http#sending-data-to-a-server
+ *    https://angular.io/guide/http#making-a-post-request
+ *      app/heroes/heroes.service.ts (addHero)
+ *      app/heroes/heroes.component.ts (addHero)
+ *    https://angular.io/guide/http#making-a-delete-request
+ *      app/heroes/heroes.service.ts (deleteHero)
+ *      app/heroes/heroes.component.ts (deleteHero)
+ *    https://angular.io/guide/http#making-a-put-request
+ *      app/heroes/heroes.service.ts (updateHero)
+ *    https://angular.io/guide/http#adding-and-updating-headers
+ *      https://angular.io/guide/http#adding-headers
+ *        app/heroes/heroes.service.ts (httpOptions)
+ *      https://angular.io/guide/http#updating-headers
+ */
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http'; // /http#adding-headers
 
 
 import { Observable } from 'rxjs';
@@ -9,7 +24,7 @@ import { catchError } from 'rxjs/operators';
 import { Hero } from './hero';
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 
-const httpOptions = {
+const httpOptions = { // /http#adding-headers
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
     'Authorization': 'my-auth-token'
@@ -52,7 +67,7 @@ export class HeroesService {
   //////// Save methods //////////
 
   /** POST: add a new hero to the database */
-  addHero (hero: Hero): Observable<Hero> {
+  addHero (hero: Hero): Observable<Hero> { // /http#making-a-post-request
     return this.http.post<Hero>(this.heroesUrl, hero, httpOptions)
       .pipe(
         catchError(this.handleError('addHero', hero))
@@ -60,7 +75,7 @@ export class HeroesService {
   }
 
   /** DELETE: delete the hero from the server */
-  deleteHero (id: number): Observable<{}> {
+  deleteHero (id: number): Observable<{}> { // /http#making-a-delete-request
     const url = `${this.heroesUrl}/${id}`; // DELETE api/heroes/42
     return this.http.delete(url, httpOptions)
       .pipe(
@@ -69,7 +84,7 @@ export class HeroesService {
   }
 
   /** PUT: update the hero on the server. Returns the updated hero upon success. */
-  updateHero (hero: Hero): Observable<Hero> {
+  updateHero (hero: Hero): Observable<Hero> { // /http#making-a-put-request
     httpOptions.headers =
       httpOptions.headers.set('Authorization', 'my-new-auth-token');
 

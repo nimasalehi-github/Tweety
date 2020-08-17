@@ -1,3 +1,18 @@
+/** https://angular.io/guide/http#sending-data-to-a-server
+ *    https://angular.io/guide/http#making-a-post-request
+ *      app/heroes/heroes.service.ts (addHero)
+ *      app/heroes/heroes.component.ts (addHero)
+ *    https://angular.io/guide/http#making-a-delete-request
+ *      app/heroes/heroes.service.ts (deleteHero)
+ *      app/heroes/heroes.component.ts (deleteHero)
+ *    https://angular.io/guide/http#making-a-put-request
+ *      app/heroes/heroes.service.ts (updateHero)
+ *    https://angular.io/guide/http#adding-and-updating-headers
+ *      https://angular.io/guide/http#adding-headers
+ *        app/heroes/heroes.service.ts (httpOptions)
+ *      https://angular.io/guide/http#updating-headers
+ */
+
 import { Component, OnInit } from '@angular/core';
 
 import { Hero } from './hero';
@@ -33,14 +48,14 @@ export class HeroesComponent implements OnInit {
 
     // The server will generate the id for this new hero
     const newHero: Hero = { name } as Hero;
-    this.heroesService
+    this.heroesService // /http#making-a-post-request
       .addHero(newHero)
       .subscribe(hero => this.heroes.push(hero));
   }
 
   delete(hero: Hero): void {
     this.heroes = this.heroes.filter(h => h !== hero);
-    this.heroesService
+    this.heroesService // /http#making-a-delete-request
       .deleteHero(hero.id)
       .subscribe();
     /*
