@@ -1,3 +1,25 @@
+/**
+ * https://angular.io/guide/http#intercepting-requests-and-responses
+ *  /http#write-an-interceptor
+ *    app/http-interceptors/noop-interceptor.ts
+ *  /http#the-next-object
+ *  /http#provide-the-interceptor
+ *    app/http-interceptors/index.ts
+ *    app/app.module.ts (interceptor providers)
+ *  /http#interceptor-order
+ *  /http#handling-interceptor-events
+ *    app/http-interceptors/ensure-https-interceptor.ts (excerpt)
+ *    app/http-interceptors/trim-name-interceptor.ts (excerpt)
+ *  /http#setting-default-headers
+ *    app/http-interceptors/auth-interceptor.ts
+ *  /http#using-interceptors-for-logging
+ *    app/http-interceptors/logging-interceptor.ts)
+ *  /http#using-interceptors-for-caching
+ *    app/http-interceptors/caching-interceptor.ts)
+ *  /http#using-interceptors-to-request-multiple-values
+ *
+ */
+
 /** https://angular.io/guide/http#setup-for-server-communication
  *    app/app.module.ts (excerpt)
  *    app/config/config.service.ts (excerpt)
@@ -63,7 +85,7 @@ import { httpInterceptorProviders } from './http-interceptors/index';
     HttpErrorHandler,
     MessageService,
     { provide: RequestCache, useClass: RequestCacheWithMap },
-    httpInterceptorProviders
+    httpInterceptorProviders // https://angular.io/guide/http#provide-the-interceptor
   ],
   bootstrap: [ AppComponent ] // http#setup-for-server-communication
 })
