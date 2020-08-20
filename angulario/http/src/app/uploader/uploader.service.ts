@@ -1,3 +1,9 @@
+/**
+ *  https://angular.io/guide/http#tracking-and-showing-request-progress
+      app/uploader/uploader.service.ts (upload request)
+      app/uploader/uploader.service.ts (upload body)
+      app/uploader/uploader.service.ts (getEventMessage)
+ */
 import { Injectable } from '@angular/core';
 import {
   HttpClient, HttpEvent, HttpEventType, HttpProgressEvent,
@@ -35,13 +41,13 @@ export class UploaderService {
     // Create the request object that POSTs the file to an upload endpoint.
     // The `reportProgress` option tells HttpClient to listen and return
     // XHR progress events.
-    const req = new HttpRequest('POST', '/upload/file', file, {
+    const req = new HttpRequest('POST', '/upload/file', file, { // https://angular.io/guide/http#tracking-and-showing-request-progress
       reportProgress: true
     });
 
     // The `HttpClient.request` API produces a raw event stream
     // which includes start (sent), progress, and response events.
-    return this.http.request(req).pipe(
+    return this.http.request(req).pipe( // https://angular.io/guide/http#tracking-and-showing-request-progress
       map(event => this.getEventMessage(event, file)),
       tap(message => this.showProgress(message)),
       last(), // return last (completed) message to caller
@@ -75,7 +81,7 @@ export class UploaderService {
    * When no `UploadInterceptor` and no server,
    * you'll end up here in the error handler.
    */
-  private handleError(file: File) {
+  private handleError(file: File) { // https://angular.io/guide/http#tracking-and-showing-request-progress
     const userMessage = `${file.name} upload failed.`;
 
     return (error: HttpErrorResponse) => {
