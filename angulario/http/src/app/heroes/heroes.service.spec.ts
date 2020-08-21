@@ -33,7 +33,7 @@ describe('HeroesService', () => {
     heroService = TestBed.inject(HeroesService);
   });
 
-  afterEach(() => {
+  afterEach(() => {// https://angular.io/guide/http#expecting-and-answering-requests
     // After every test, assert that there are no more pending requests.
     httpTestingController.verify();
   });

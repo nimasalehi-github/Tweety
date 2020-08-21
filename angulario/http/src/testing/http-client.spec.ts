@@ -1,9 +1,16 @@
+/**
+  https://angular.io/guide/http#testing-http-requests
+    https://angular.io/guide/http#setup-for-testing
+        app/testing/http-client.spec.ts (imports)
+        app/testing/http-client.spec.ts(setup)
+*/
+
 // Http testing module and mocking controller
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'; // https://angular.io/guide/http#setup-for-testing
 
 // Other imports
-import { TestBed } from '@angular/core/testing';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing'; // https://angular.io/guide/http#setup-for-testing
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'; // https://angular.io/guide/http#setup-for-testing
 
 import { HttpHeaders } from '@angular/common/http';
 
@@ -14,24 +21,24 @@ interface Data {
 const testUrl = '/data';
 
 describe('HttpClient testing', () => {
-  let httpClient: HttpClient;
-  let httpTestingController: HttpTestingController;
+  let httpClient: HttpClient; // https://angular.io/guide/http#setup-for-testing
+  let httpTestingController: HttpTestingController; // https://angular.io/guide/http#setup-for-testing
 
-  beforeEach(() => {
+  beforeEach(() => { // https://angular.io/guide/http#setup-for-testing
     TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ]
     });
 
     // Inject the http service and test controller for each test
-    httpClient = TestBed.inject(HttpClient);
-    httpTestingController = TestBed.inject(HttpTestingController);
+    httpClient = TestBed.inject(HttpClient); // https://angular.io/guide/http#setup-for-testing
+    httpTestingController = TestBed.inject(HttpTestingController); // https://angular.io/guide/http#setup-for-testing
   });
-  afterEach(() => {
+  afterEach(() => { // https://angular.io/guide/http#setup-for-testing // https://angular.io/guide/http#expecting-and-answering-requests
     // After every test, assert that there are no more pending requests.
     httpTestingController.verify();
   });
   /// Tests begin ///
-  it('can test HttpClient.get', () => {
+  it('can test HttpClient.get', () => { // https://angular.io/guide/http#expecting-and-answering-requests
     const testData: Data = {name: 'Test Data'};
 
     // Make an HTTP GET request
@@ -55,7 +62,7 @@ describe('HttpClient testing', () => {
 
     // Finally, assert that there are no outstanding requests.
     httpTestingController.verify();
-  });
+  });// https://angular.io/guide/http#expecting-and-answering-requests
 
   it('can test HttpClient.get with matching header', () => {
     const testData: Data = {name: 'Test Data'};
@@ -70,7 +77,7 @@ describe('HttpClient testing', () => {
 
       // Find request with a predicate function.
     // Expect one request with an authorization header
-    const req = httpTestingController.expectOne(
+    const req = httpTestingController.expectOne(  //  https://angular.io/guide/http#custom-request-expectations
       req => req.headers.has('Authorization')
     );
     req.flush(testData);
@@ -93,16 +100,16 @@ describe('HttpClient testing', () => {
       .subscribe(d => expect(d).toEqual(testData, 'should be expected data'));
 
     // get all pending requests that match the given URL
-    const requests = httpTestingController.match(testUrl);
-    expect(requests.length).toEqual(3);
+    const requests = httpTestingController.match(testUrl);  //  https://angular.io/guide/http#custom-request-expectations
+    expect(requests.length).toEqual(3);  //  https://angular.io/guide/http#custom-request-expectations
 
     // Respond to each request with different results
-    requests[0].flush([]);
-    requests[1].flush([testData[0]]);
-    requests[2].flush(testData);
+    requests[0].flush([]);  //  https://angular.io/guide/http#custom-request-expectations
+    requests[1].flush([testData[0]]);  //  https://angular.io/guide/http#custom-request-expectations
+    requests[2].flush(testData);  //  https://angular.io/guide/http#custom-request-expectations
   });
 
-  it('can test for 404 error', () => {
+  it('can test for 404 error', () => { // https://angular.io/guide/http#testing-for-errors
     const emsg = 'deliberate 404 error';
 
     httpClient.get<Data[]>(testUrl).subscribe(
@@ -119,7 +126,7 @@ describe('HttpClient testing', () => {
     req.flush(emsg, { status: 404, statusText: 'Not Found' });
   });
 
-  it('can test for network error', () => {
+  it('can test for network error', () => {  // https://angular.io/guide/http#testing-for-errors
     const emsg = 'simulated network error';
 
     httpClient.get<Data[]>(testUrl).subscribe(
@@ -140,7 +147,7 @@ describe('HttpClient testing', () => {
       filename: 'HeroService.ts',
       lineno: 42,
       colno: 21
-    });
+    });                                     // https://angular.io/guide/http#testing-for-errors
 
     // Respond with mock error
     req.error(mockError);

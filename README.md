@@ -1,16 +1,10 @@
 # Tweety
 Get started with the Twitter developer platform
 
-# AngularJS 
+# AngularJS  https://angular.io/guide/http
+
     https://angular.io/guide/http#communicating-with-backend-services-using-http
         https://angular.io/guide/http#setup-for-server-communication
-
-
-
-
-
-
-
 
 
         https://angular.io/guide/http#tracking-and-showing-request-progress
@@ -25,4 +19,14 @@ Get started with the Twitter developer platform
 
         https://angular.io/guide/http#security-xsrf-protection
             https://angular.io/guide/http#configuring-custom-cookieheader-names
-            
+
+        https://angular.io/guide/http#testing-http-requests
+            https://angular.io/guide/http#setup-for-testing
+                app/testing/http-client.spec.ts (imports)
+                app/testing/http-client.spec.ts(setup)
+<!-- 
+        https://angular.io/guide/http#expecting-and-answering-requests
+            app/testing/http-client.spec.ts(httpClient.get)
+            https://angular.io/guide/http#custom-request-expectations
+            https://angular.io/guide/http#handling-more-than-one-request
+        https://angular.io/guide/http#testing-for-errors -->
