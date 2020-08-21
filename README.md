@@ -22,4 +22,7 @@ Get started with the Twitter developer platform
             app/package-search/package-search.component.html (search)
             app/package-search/package-search.component.ts (excerpt)
             https://angular.io/guide/http#using-the-switchmap-operator
+
+        https://angular.io/guide/http#security-xsrf-protection
+            https://angular.io/guide/http#configuring-custom-cookieheader-names
             

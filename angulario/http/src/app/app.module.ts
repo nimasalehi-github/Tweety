@@ -1,3 +1,6 @@
+/** https://angular.io/guide/http#security-xsrf-protection
+ *     https://angular.io/guide/http#configuring-custom-cookieheader-names
+*/
 /**
  * https://angular.io/guide/http#intercepting-requests-and-responses
  *  /http#write-an-interceptor
@@ -55,7 +58,7 @@ import { httpInterceptorProviders } from './http-interceptors/index';
     FormsModule,
     // import HttpClientModule after BrowserModule.
     HttpClientModule, // http#setup-for-server-communication
-    HttpClientXsrfModule.withOptions({
+    HttpClientXsrfModule.withOptions({ // https://angular.io/guide/http#security-xsrf-protection
       cookieName: 'My-Xsrf-Cookie',
       headerName: 'My-Xsrf-Header',
     }),
