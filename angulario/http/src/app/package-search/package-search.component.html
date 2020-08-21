@@ -1,9 +1,22 @@
+<!--
+  https://angular.io/guide/http#optimizing-server-interaction-with-debouncing
+            app/package-search/package-search.component.html (search)
+            app/package-search/package-search.component.ts (excerpt)
+            https://angular.io/guide/http#using-the-switchmap-operator
+  -->
+
 <h3>Search Npm Packages</h3>
 <p><i>Searches when typing stops. Caches for 30 seconds.</i></p>
+<!--
+  https://angular.io/guide/http#optimizing-server-interaction-with-debouncing
+  -->
 <input (keyup)="search($event.target.value)" id="name" placeholder="Search"/>
 <input type="checkbox" id="refresh" [checked]="withRefresh" (click)="toggleRefresh()">
 <label for="refresh">with refresh</label>
 
+<!--
+   https://angular.io/guide/http#optimizing-server-interaction-with-debouncing
+  -->
 <ul>
   <li *ngFor="let package of packages$ | async">
     <b>{{package.name}} v.{{package.version}}</b> -
