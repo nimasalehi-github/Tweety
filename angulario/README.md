@@ -3,6 +3,16 @@
     app/config/config.service.ts (excerpt)
     app/config/config.service.ts (RxJS imports)
 
+
+You can run the live example / download example that accompanies this guide.
+
+The sample app does not require a data server. It relies on the Angular in-memory-web-api, which replaces the HttpClient module's HttpBackend. The replacement service simulates the behavior of a REST-like backend.
+
+Look at the AppModule imports to see how it is configured.
+https://github.com/angular/in-memory-web-api/blob/master/README.md
+
+
+
 # https://angular.io/guide/http#requesting-data-from-a-server
     assets/config.json
     app/config/config.service.ts (getConfig v.1)
@@ -84,4 +94,3 @@
         https://angular.io/guide/http#custom-request-expectations
         https://angular.io/guide/http#handling-more-than-one-request
     https://angular.io/guide/http#testing-for-errors
-    
