@@ -14,7 +14,14 @@ import { catchError, retry } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ConfigService extends ConfigClass {
+
+  configUrl = 'assets/config.json'; // /http#requesting-data-from-a-server
+
   constructor( private http: HttpClient ) {
     super();
+  }
+
+  getConfig_1() {
+    return this.http.get(this.configUrl); // /http#requesting-data-from-a-server
   }
 }

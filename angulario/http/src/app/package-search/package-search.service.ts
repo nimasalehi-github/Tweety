@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'; // Use the HTTPClient.get() method to fetch data from a server. The asynchronous method sends an HTTP request, and returns an Observable that emits the requested data when the response is received. The return type varies based on the observe and responseType values that you pass to the call.
 
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -21,6 +21,11 @@ const httpOptions = {
 };
 
 function createHttpOptions(packageName: string, refresh = false) {
+
+    /** The get() method takes two arguments; the endpoint URL from which to fetch,
+     * and an options object that you can use to configure the request.
+     * */
+
     // npm package name search api
     // e.g., http://npmsearch.com/query?q=dom'
     const params = new HttpParams({ fromObject: { q: packageName } });

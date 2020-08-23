@@ -15,7 +15,12 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http'; // /http#adding-headers
+
+/** Important options include the observe and responseType properties.
+The observe option specifies how much of the response to return.
+The responseType option specifies the format in which to return data. */
+
+import { HttpHeaders } from '@angular/common/http'; // http#adding-headers
 
 
 import { Observable } from 'rxjs';
