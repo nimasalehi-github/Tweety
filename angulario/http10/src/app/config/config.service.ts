@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { ConfigClass } from './config-class';
+import { ConfigInterface } from './config-interface';
+
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
@@ -15,13 +17,22 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class ConfigService extends ConfigClass {
 
-  configUrl = 'assets/config.json'; // /http#requesting-data-from-a-server
-
   constructor( private http: HttpClient ) {
     super();
   }
 
-  getConfig_1() {
-    return this.http.get(this.configUrl); // /http#requesting-data-from-a-server
+  configUrl = 'assets/config.json'; // /http#requesting-data-from-a-server
+
+  getConfig() {
+    return this.http.get(this.configUrl);
   }
+  getConfigـv1() {
+    return this.http.get(this.configUrl);
+  }
+  getConfig_v2() {
+    // now returns an Observable of Config
+    return this.http.get<ConfigInterface>(this.configUrl);
+  }
+  getConfig_v3(){}
+
 }

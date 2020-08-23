@@ -1,25 +1,10 @@
-You can run the live example / download example that accompanies this guide.
 
-The sample app does not require a data server. It relies on the Angular in-memory-web-api, which replaces the HttpClient module's HttpBackend. The replacement service simulates the behavior of a REST-like backend.
-
-Look at the AppModule imports to see how it is configured.
-https://github.com/angular/in-memory-web-api/blob/master/README.md
 
 # https://angular.io/guide/http#setup-for-server-communication
 
     app/app.module.ts (excerpt)
     app/config/config.service.ts (excerpt)
     app/config/config.service.ts (RxJS imports)
-
-
-
-Use the HTTPClient.get() method to fetch data from a server. The asynchronous method sends an HTTP request, and returns an Observable that emits the requested data when the response is received. The return type varies based on the observe and responseType values that you pass to the call.
-  
-The get() method takes two arguments; the endpoint URL from which to fetch, and an options object that you can use to configure the request.
-
-You can use the options object to configure various other aspects of an outgoing request. In Adding headers, for example, the service set the default headers using the headers option property.
-
-Use the params property to configure a request with HTTP URL parameters, and the reportProgress option to listen for progress events when transferring large amounts of data.
 
 # https://angular.io/guide/http#requesting-data-from-a-server
 
@@ -35,9 +20,6 @@ Use the params property to configure a request with HTTP URL parameters, and the
     https://angular.io/guide/http#requesting-non-json-data
         app/downloader/downloader.service.ts (getTextFile)
         app/downloader/downloader.component.ts (download)
-
-
-
 
 # https://angular.io/guide/http#handling-request-errors
 
