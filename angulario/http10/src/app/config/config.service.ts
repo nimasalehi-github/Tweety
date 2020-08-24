@@ -11,6 +11,8 @@ import { ConfigInterface } from './config-interface';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -23,16 +25,9 @@ export class ConfigService extends ConfigClass {
 
   configUrl = 'assets/config.json'; // /http#requesting-data-from-a-server
 
-  getConfig() {
-    return this.http.get(this.configUrl);
-  }
-  getConfigـv1() {
-    return this.http.get(this.configUrl);
-  }
-  getConfig_v2() {
-    // now returns an Observable of Config
-    return this.http.get<ConfigInterface>(this.configUrl);
-  }
-  getConfig_v3(){}
 
+  getConfigResponse(): Observable<HttpResponse<ConfigInterface>> {
+    return this.http.get<ConfigInterface>(
+      this.configUrl, { observe: 'response' });
+  }
 }

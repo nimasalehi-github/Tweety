@@ -10,33 +10,25 @@ import { ConfigService } from './config.service';
 })
 export class ConfigComponent implements OnInit {
   config: ConfigInterface; // http#requesting-data-from-a-server
-
-  constructor() { }
+  error: any;
+  headers: string[];
+  constructor(private configService: ConfigService) { }
 
   ngOnInit(): void {
   }
 
 
-  showConfig() {
-    this.configService.getConfig()
-      .subscribe(
-        (data: Config) => this.config = { ...data }, // success path
-      );
-  }
+  showConfigResponse() {                        // /http#reading-the-full-response
+    this.configService.getConfigResponse()      // /http#requesting-data-from-a-server
+      // resp is of type `HttpResponse<Config>`
+      .subscribe(resp => {
+        // display its headers
+        const keys = resp.headers.keys();
+        this.headers = keys.map(key =>
+          `${key}: ${resp.headers.get(key)}`);
 
-  showConfig_v1() {
-    this.configService.getConfig_1()
-      .subscribe((data: Config) => this.config = {
-          heroesUrl: data['heroesUrl'],
-          textfile:  data['textfile']
+        // access the body directly, which is typed as `Config`.
+        this.config = { ... resp.body };
       });
   }
-
-  showConfig_v2() {
-    this.configService.getConfig()
-      // clone the data object, using its known Config shape
-      .subscribe((data: ConfigInterface) => this.config = { ...data });  // /http#requesting-data-from-a-server
-                                                                // /http#requesting-a-typed-response
-  }
-
 }
