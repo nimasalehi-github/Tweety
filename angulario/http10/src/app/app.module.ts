@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { ConfigComponent } from './config/config.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { DownloaderComponent } from './downloader/downloader.component';
 /** https://angular.io/guide/http#setup-for-server-communication
  *  Before you can use HttpClient,
  *  you need to import the Angular HttpClientModule.
@@ -14,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
-    ConfigComponent
+    ConfigComponent,
+    DownloaderComponent
   ],
   imports: [
     BrowserModule,
